@@ -13,9 +13,6 @@ cd "$SCRIPT_DIR"
 if idf.py build; then
     # Build succeeded, proceed with flashing OTA partition
     echo -e "\e[32mSuccessful build, you can proceed to burn it onto your target!\e[0m"
-
-    esptool.py --chip ESP32-S3 merge_bin -o build/merged.bin 0x10000 build/esp_idf.bin
-
 else
     # Build failed, display an error message and do not proceed
     echo -e "\e[31mFirmware build failed\e[0m"

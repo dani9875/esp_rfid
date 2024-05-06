@@ -11,9 +11,4 @@ else
     exit 1
 fi
 
-# Check if an argument is provided
-if [ -n "$1" ]; then
-    $CONTAINER_TOOL run --rm --privileged -it -v /dev:/dev -v $PWD:/project -w /project/ idf-pico-merged sh -c "git config --global --add safe.directory /project && ./build_firmware.sh"
-else
-    $CONTAINER_TOOL run --rm --privileged -it -v /dev:/dev -v $PWD:/project -w /project/ idf-pico-merged sh -c "git config --global --add safe.directory /project && bash"
-fi
+$CONTAINER_TOOL run --rm --privileged -it -v /dev:/dev -v $PWD:/project -w /project/ idf sh -c "bash"
