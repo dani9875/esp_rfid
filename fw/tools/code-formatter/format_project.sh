@@ -5,6 +5,8 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 # Construct the project folder path
 PROJECT_FOLDER="$SCRIPT_DIR/../../"
+MAIN_PROJECT_FOLDER="$SCRIPT_DIR/../../../"
+
 
 # Check if the .clang-format file exists in the project folder
 if [ ! -f "$SCRIPT_DIR/.clang-format" ]; then
@@ -24,7 +26,7 @@ CF_EXECUTABLE="$SCRIPT_DIR/cf_v17"
 if command -v git &> /dev/null; then
   # Git is available
   # Get list of modified C and header files
-  MODIFIED_FILES=$(git -C "$PROJECT_FOLDER" status --porcelain | awk '{print $2}' | grep -E '\.(c|h)$')
+  MODIFIED_FILES=$(git -C "$MAIN_PROJECT_FOLDER" status --porcelain | awk '{print $2}' | grep -E '\.(c|h)$')
 else
   # Git is not available, format all files within specified folders
   MODIFIED_FILES=$(find "${SEARCH_FOLDERS[@]}" -type f \( -name "*.h" -o -name "*.c" \))

@@ -9,12 +9,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "i2c.h"
 
 
 static char       TAG[] = "MAIN";
 
 void app_main(void)
 {
+    i2c_init();
+
     while(1)
     {
         vTaskDelay(pdMS_TO_TICKS(2000));
